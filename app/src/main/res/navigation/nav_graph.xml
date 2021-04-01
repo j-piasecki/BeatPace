@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="io.beatpace.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_configurationFragment"
+            app:destination="@id/configurationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_managePlaylistsFragment"
+            app:destination="@id/managePlaylistsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/configurationFragment"
+        android:name="io.beatpace.fragments.ConfigurationFragment"
+        android:label="fragment_configuration"
+        tools:layout="@layout/fragment_configuration" >
+        <action
+            android:id="@+id/action_configurationFragment_to_playlistSelectFragment"
+            app:destination="@id/playlistSelectFragment" />
+        <action
+            android:id="@+id/action_configurationFragment_to_paceSelectFragment"
+            app:destination="@id/paceSelectFragment" />
+        <action
+            android:id="@+id/action_configurationFragment_to_monitoringFragment"
+            app:destination="@id/monitoringFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playlistSelectFragment"
+        android:name="io.beatpace.fragments.PlaylistSelectFragment"
+        android:label="fragment_playlist_select"
+        tools:layout="@layout/fragment_playlist_select" >
+        <action
+            android:id="@+id/action_playlistSelectFragment_to_configurationFragment2"
+            app:destination="@id/configurationFragment"
+            app:popUpTo="@id/configurationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/paceSelectFragment"
+        android:name="io.beatpace.fragments.PaceSelectFragment"
+        android:label="fragment_pace_select"
+        tools:layout="@layout/fragment_pace_select" >
+        <action
+            android:id="@+id/action_paceSelectFragment_to_configurationFragment"
+            app:destination="@id/configurationFragment"
+            app:popUpTo="@id/configurationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/monitoringFragment"
+        android:name="io.beatpace.fragments.MonitoringFragment"
+        android:label="fragment_monitoring"
+        tools:layout="@layout/fragment_monitoring" >
+        <action
+            android:id="@+id/action_monitoringFragment_to_endFragment"
+            app:destination="@id/endFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/endFragment"
+        android:name="io.beatpace.fragments.EndFragment"
+        android:label="fragment_end"
+        tools:layout="@layout/fragment_end" >
+        <action
+            android:id="@+id/action_endFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/managePlaylistsFragment"
+        android:name="io.beatpace.fragments.ManagePlaylistsFragment"
+        android:label="fragment_manage_playlists"
+        tools:layout="@layout/fragment_manage_playlists" >
+        <action
+            android:id="@+id/action_managePlaylistsFragment_to_editPlaylistFragment"
+            app:destination="@id/editPlaylistFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPlaylistFragment"
+        android:name="io.beatpace.fragments.EditPlaylistFragment"
+        android:label="fragment_edit_playlist"
+        tools:layout="@layout/fragment_edit_playlist" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="io.beatpace.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
