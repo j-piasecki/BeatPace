@@ -16,4 +16,8 @@ class EditPlaylistFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_edit_playlist, container, false)
     }
+
+    private fun onAddSongClick() {}
+
+    private fun onDeletePlaylistClick() {}
 }

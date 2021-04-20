@@ -16,4 +16,9 @@ class MonitoringFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_monitoring, container, false)
     }
+
+    private fun showCurrentPace(someDouble: Double) {}
+
+    private fun onFinishClick() {}
+
 }

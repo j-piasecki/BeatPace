@@ -16,4 +16,9 @@ class EndFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_end, container, false)
     }
+
+    fun showStats() {}
+
+    fun onOkClick() {}
+
 }
