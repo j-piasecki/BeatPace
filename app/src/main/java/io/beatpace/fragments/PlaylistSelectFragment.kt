@@ -16,4 +16,9 @@ class PlaylistSelectFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_playlist_select, container, false)
     }
+
+    fun onPlaylistSelected(someInt: Int) {}
+
+    private fun onConfirmClick() {}
+
 }

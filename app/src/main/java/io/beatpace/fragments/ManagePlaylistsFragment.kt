@@ -16,4 +16,9 @@ class ManagePlaylistsFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_manage_playlists, container, false)
     }
+
+    private fun onPlaylistClick(someInt: Int) {}
+
+    private fun onAddPlaylistClick() {}
+
 }

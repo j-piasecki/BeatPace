@@ -16,4 +16,9 @@ class PaceSelectFragment : Fragment() {
 
         return inflater.inflate(R.layout.fragment_pace_select, container, false)
     }
+
+    private fun setDisplayedPace() {}
+
+    private fun onConfirmClick() {}
+
 }

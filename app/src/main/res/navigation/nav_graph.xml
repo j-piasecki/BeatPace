@@ -93,7 +93,7 @@
         tools:layout="@layout/fragment_edit_playlist" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="io.beatpace.fragments.SettingsFragment"
+        android:name="io.beatpace.fragments.NewSongFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_new_song" />
 </navigation>

@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import io.beatpace.R
 
-class SettingsFragment : Fragment() {
+class NewSongFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        return inflater.inflate(R.layout.fragment_new_song, container, false)
     }
+
+    //TODO change to NewSongFragment
 }
