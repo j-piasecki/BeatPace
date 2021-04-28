@@ -13,4 +13,8 @@ data class Playlist(var name: String, var Id: Int, private val songList: List<Lo
     fun getSize(): Int {
         TODO("Not yet implemented")
     }
+
+    fun containsSong(songId: Long): Boolean {
+        return songList.contains(songId)
+    }
 }
