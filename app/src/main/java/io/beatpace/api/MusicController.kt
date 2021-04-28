@@ -1,21 +1,46 @@
 package io.beatpace.api
 
-import android.view.View
 import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import io.beatpace.api.data.structures.Playlist
+import java.util.*
 
-class MusicController {
+class MusicController(private val exoPlayer: SimpleExoPlayer) {
 
-    private lateinit var exoPlayer: ExoPlayer
     private var targetPace: Double = 0.0
 
+    fun startPlaying(playlist: Playlist, pace: Double) {
+        this.targetPace = pace
+        val songs = getMediaSourceList(playlist)
+        exoPlayer.addMediaSources(songs)
 
-    fun startPlaying(playlist: Playlist, pace: Double) {}
+        exoPlayer.prepare()
+        exoPlayer.play()
+    }
 
-    fun stopPlaying() {}
+    fun stopPlaying() {
+        exoPlayer.stop()
+        exoPlayer.release()
+    }
 
-    fun attachToView(view: View) {}
+    fun attachToView(view: StyledPlayerView) {
+        view.player = exoPlayer
+    }
 
-    fun onPaceUpdate(pace: Double) {}
+    fun onPaceUpdate(pace: Double) {
+        /*
+            Some operations that returns target volume
+         */
+
+
+    }
+
+    private fun getMediaSourceList(playlist: Playlist) : List<MediaSource> {
+        val list = LinkedList<Long>()
+        playlist.getSize()
+        return LinkedList()
+    }
 
 }
