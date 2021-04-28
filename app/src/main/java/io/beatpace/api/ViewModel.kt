@@ -2,7 +2,7 @@ package io.beatpace.api
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import io.beatpace.api.data.structures.DataConfig
+import io.beatpace.api.data.DataConfig
 
 class ViewModel(application: Application) : AndroidViewModel(application) {
 
