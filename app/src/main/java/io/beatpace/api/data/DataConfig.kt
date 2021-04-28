@@ -1,8 +1,10 @@
-package io.beatpace.api.data.structures
+package io.beatpace.api.data
 
-data class DataConfig(private var selectedPlaylistId: Int, private var selectedPace: Double) {
+import android.content.Context
 
-    fun setPace() {}
+class DataConfig private constructor(private var selectedPlaylistId: Int, private var selectedPace: Double) {
+
+    fun setPace(pace: Double) {}
 
     fun setPlaylistId(playlistId: Int) {}
 
@@ -15,7 +17,7 @@ data class DataConfig(private var selectedPlaylistId: Int, private var selectedP
     }
 
     companion object {
-        fun loadSavedData(): DataConfig {
+        fun loadSavedData(context: Context): DataConfig {
             TODO("Not yet implemented")
         }
     }
