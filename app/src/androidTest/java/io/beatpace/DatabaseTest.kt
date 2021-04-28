@@ -47,7 +47,7 @@ class DatabaseTest {
 
     @Test
     fun database_TestCreatePlaylist_Created() {
-        dao.createNewPlaylist(PlaylistEntity(title = "Best playlist"))
+        dao.createNewPlaylist(title = "Best playlist")
 
         val allPlaylists = dao.getPlaylists()
         assertEquals("Best playlist", allPlaylists.first().title)
@@ -55,9 +55,9 @@ class DatabaseTest {
 
     @Test
     fun database_TestDeletePlaylist_Deleted() {
-        val id = dao.createNewPlaylist(PlaylistEntity(title = "Best playlist"))
+        val id = dao.createNewPlaylist(title = "Best playlist")
 
-        dao.deletePlaylist(PlaylistEntity(playlistId = id.toInt(), ""))
+        dao.deletePlaylist(id = id.toInt())
 
         val allPlaylists = dao.getPlaylists()
         assertEquals(0, allPlaylists.size)
@@ -65,7 +65,7 @@ class DatabaseTest {
 
     @Test
     fun database_TestInsertSong_Inserted() {
-        val id = dao.createNewPlaylist(PlaylistEntity(title = "Best playlist"))
+        val id = dao.createNewPlaylist(title = "Best playlist")
 
         dao.insertNewSong(PlaylistContent(playlistId = id.toInt(), 0))
 
@@ -75,7 +75,7 @@ class DatabaseTest {
 
     @Test
     fun database_TestDeleteSong_Deleted() {
-        val id = dao.createNewPlaylist(PlaylistEntity(title = "Best playlist"))
+        val id = dao.createNewPlaylist(title = "Best playlist")
 
         dao.insertNewSong(PlaylistContent(playlistId = id.toInt(), 0))
         dao.removeSong(PlaylistContent(playlistId = id.toInt(), 0))
@@ -86,12 +86,12 @@ class DatabaseTest {
 
     @Test
     fun database_TestDeletePlaylistWithContent_Deleted() {
-        val id = dao.createNewPlaylist(PlaylistEntity(title = "Best playlist"))
+        val id = dao.createNewPlaylist(title = "Best playlist")
 
         dao.insertNewSong(PlaylistContent(playlistId = id.toInt(), 0))
         dao.insertNewSong(PlaylistContent(playlistId = id.toInt(), 1))
 
-        dao.deletePlaylist(PlaylistEntity(playlistId = id.toInt(), ""))
+        dao.deletePlaylist(id = id.toInt())
 
         val allSongs = dao.getAllSongs(id.toInt())
         assertEquals(allSongs.size, 0)
@@ -105,10 +105,10 @@ class DatabaseTest {
 
     @Test(expected = SQLiteConstraintException::class)
     fun database_TestPlaylistContentPrimaryKeyViolation_ExceptionThrown() {
-        dao.createNewPlaylist(PlaylistEntity(playlistId = 0, title = "Playlist 1"))
+        val id = dao.createNewPlaylist(title = "Playlist 1").toInt()
 
-        dao.insertNewSong(PlaylistContent(playlistId = 0, songId = 0))
-        dao.insertNewSong(PlaylistContent(playlistId = 0, songId = 0))
+        dao.insertNewSong(PlaylistContent(playlistId = id, songId = 0))
+        dao.insertNewSong(PlaylistContent(playlistId = id, songId = 0))
     }
 
     @Test(expected = SQLiteConstraintException::class)

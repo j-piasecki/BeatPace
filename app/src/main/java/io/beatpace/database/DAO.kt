@@ -14,11 +14,14 @@ interface DAO {
     @Insert
     fun insertNewSong(content: PlaylistContent)
 
-    @Insert
-    fun createNewPlaylist(playlist: PlaylistEntity): Long
+    @Query("INSERT INTO playlists VALUES(NULL, :title)")
+    fun createNewPlaylist(title: String): Long
 
-    @Delete
-    fun deletePlaylist(playlist: PlaylistEntity)
+    @Insert
+    fun createNewPlaylist(entity: PlaylistEntity): Long
+
+    @Query("DELETE FROM playlists WHERE playlistId=:id")
+    fun deletePlaylist(id: Int)
 
     @Delete
     fun removeSong(content: PlaylistContent)
