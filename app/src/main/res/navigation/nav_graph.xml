@@ -16,9 +16,6 @@
         <action
             android:id="@+id/action_homeFragment_to_managePlaylistsFragment"
             app:destination="@id/managePlaylistsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/configurationFragment"
@@ -90,10 +87,20 @@
         android:id="@+id/editPlaylistFragment"
         android:name="io.beatpace.fragments.EditPlaylistFragment"
         android:label="fragment_edit_playlist"
-        tools:layout="@layout/fragment_edit_playlist" />
+        tools:layout="@layout/fragment_edit_playlist" >
+        <action
+                android:id="@+id/action_editPlaylistFragment_to_newSongFragment"
+                app:destination="@id/newSongFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="io.beatpace.fragments.NewSongFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_new_song" />
+            android:id="@+id/newSongFragment"
+            android:name="io.beatpace.fragments.NewSongFragment"
+            android:label="fragment_new_song"
+            tools:layout="@layout/fragment_new_song" >
+        <action
+                android:id="@+id/action_newSongFragment_to_editPlaylistFragment"
+                app:destination="@id/editPlaylistFragment"
+                app:popUpTo="@id/editPlaylistFragment"
+                app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
