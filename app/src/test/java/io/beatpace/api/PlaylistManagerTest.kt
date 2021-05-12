@@ -66,7 +66,7 @@ internal class PlaylistManagerTest {
         val Id = example2.createPlaylist("First")
         val current = example2.getPlaylistById(Id)
         example2.addSongToPlaylist( Id, 100)
-        assertEquals(100, current.getSong(0))
+        assertEquals(100, current!!.getSong(0))
     }
 
     @Test
@@ -85,7 +85,7 @@ internal class PlaylistManagerTest {
         val current = example2.getPlaylistById(Id)
         example2.addSongToPlaylist( Id, 100)
         example2.removeSongFromPlaylist(Id, 100)
-        assertEquals( 0, current.getSize())
+        assertEquals( 0, current!!.getSize())
     }
 
     @Test

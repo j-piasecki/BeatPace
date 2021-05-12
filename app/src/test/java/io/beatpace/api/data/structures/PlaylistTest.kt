@@ -5,7 +5,7 @@ import org.junit.Test
 
 
 internal class PlaylistTest {
-    private val example = Playlist("Example", 1, emptyList())
+    private val example = Playlist("Example", 1, mutableListOf())
 
     @Test
     fun addSongById_addSongId_Added() {
