@@ -7,7 +7,7 @@ import io.beatpace.database.PlaylistEntity
 
 class PlaylistManager(private val dao: DAO) {
 
-    private lateinit var playlists: MutableMap<Int, Playlist>
+    private val playlists: MutableMap<Int, Playlist> = HashMap()
 
     init{ // get all playlists and save them into our playlists map
 

@@ -1,24 +1,54 @@
 package io.beatpace.api.data
 
 import android.content.Context
+import android.content.SharedPreferences
+import io.beatpace.exceptions.NegativePaceException
 
-class DataConfig private constructor(private var selectedPlaylistId: Int, private var selectedPace: Double) {
+class DataConfig private constructor(private val preferences: SharedPreferences) {
 
-    fun setPace(pace: Double) {}
+    private var selectedPlaylistId: Int = 0
+    private var selectedPace: Double = 0.0
 
-    fun setPlaylistId(playlistId: Int) {}
+    init {
+        selectedPace = preferences.getFloat(KEY_SELECTED_PACE, 0f).toDouble()
+        selectedPlaylistId = preferences.getInt(KEY_SELECTED_PLAYLIST, -1)
+    }
+
+    fun setPace(pace: Double) {
+        if (pace < 0)
+            throw NegativePaceException("Selected pace cannot be negative, $pace given.")
+
+        selectedPace = pace
+
+        preferences.edit()
+            .putFloat(KEY_SELECTED_PACE, selectedPace.toFloat())
+            .apply()
+    }
+
+    fun setPlaylistId(playlistId: Int) {
+        selectedPlaylistId = playlistId
+
+        preferences.edit()
+            .putInt(KEY_SELECTED_PLAYLIST, selectedPlaylistId)
+            .apply()
+    }
 
     fun getSelectedPace(): Double {
-        TODO("Not yet implemented")
+        return selectedPace
     }
 
     fun getSelectedPlaylistId(): Int {
-        TODO("Not yet implemented")
+        return selectedPlaylistId
     }
 
     companion object {
+        private const val SHARED_PREFERENCES_NAME = "data_config_preferences"
+
+        private const val KEY_SELECTED_PACE = "selected_pace"
+        private const val KEY_SELECTED_PLAYLIST = "selected_playlist"
+
         fun loadSavedData(context: Context): DataConfig {
-            TODO("Not yet implemented")
+            return DataConfig(context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE))
         }
     }
 }

@@ -3,6 +3,7 @@ package io.beatpace
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.beatpace.api.data.DataConfig
+import io.beatpace.exceptions.NegativePaceException
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -40,7 +41,7 @@ class DataConfigTest {
         assertEquals(5.0, dataConfig.getSelectedPace(), 1e-5)
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @Test(expected = NegativePaceException::class)
     fun dataConfig_TestSetSelectedPaceNegative_ThrowsException() {
         dataConfig.setPace(-1.0)
     }

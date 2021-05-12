@@ -5,20 +5,44 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.beatpace.R
+import io.beatpace.api.ViewModel
 
 class PaceSelectFragment : Fragment() {
+
+    private val viewModel: ViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_pace_select, container, false)
     }
 
-    private fun setDisplayedPace() {}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    private fun onConfirmClick() {}
+        setDisplayedPace(viewModel.getDataConfig().getSelectedPace())
+
+        view.findViewById<FloatingActionButton>(R.id.pace_select_confirm_button).setOnClickListener(this::onConfirmClick)
+    }
+
+    private fun setDisplayedPace(pace: Double) {
+        view?.findViewById<EditText>(R.id.pace_select_input)?.setText(pace.toString())
+    }
+
+    private fun onConfirmClick(v: View) {
+        val newPace = view?.findViewById<EditText>(R.id.pace_select_input)?.text?.toString()?.toDoubleOrNull()
+
+        if (newPace != null)
+            viewModel.getDataConfig().setPace(newPace)
+
+        findNavController().navigate(PaceSelectFragmentDirections.actionPaceSelectFragmentToConfigurationFragment())
+    }
 
 }

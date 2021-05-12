@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BeatPace</string>
+    <string name="no_playlist_selected">No playlist selected</string>
 </resources>

@@ -1,24 +1,48 @@
 package io.beatpace.api
 
 import android.app.Application
+import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
+import androidx.room.Room
 import io.beatpace.api.data.DataConfig
+import io.beatpace.database.AppDatabase
 
-class ViewModel(application: Application) : AndroidViewModel(application) {
+class ViewModel(private val app: Application) : AndroidViewModel(app) {
 
-    private lateinit var songs: Map<Long, String>
+    private var songs = HashMap<Long, String>()
+
+    private val database: AppDatabase = Room.databaseBuilder(app, AppDatabase::class.java, "database")
+        .allowMainThreadQueries()
+        .build()
+
+    private val dataConfig = DataConfig.loadSavedData(app)
+    private val playlistManager = PlaylistManager(database.dao())
 
     fun getPlaylistManager(): PlaylistManager {
-        TODO("Not yet implemented")
+        return playlistManager
     }
 
     fun getDataConfig(): DataConfig {
-        TODO("Not yet implemented")
+        return dataConfig
     }
 
-    fun loadSongs() {}
-
     fun getSongs(): Map<Long, String> {
-        TODO("Not yet implemented")
+        return songs
+    }
+
+    fun loadSongs() {
+        val cursor = app.contentResolver?.query(
+            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+            arrayOf(MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE),
+            MediaStore.Audio.Media.IS_MUSIC + "!= 0",
+            null,
+            MediaStore.Audio.Media.TITLE
+        )
+
+        if (cursor != null && cursor.count > 0) {
+            while (cursor.moveToNext()) {
+                songs[cursor.getLong(0)] = cursor.getString(1)
+            }
+        }
     }
 }
