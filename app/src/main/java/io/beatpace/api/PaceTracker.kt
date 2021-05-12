@@ -6,20 +6,17 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.*
 
 
-class PaceTracker(private var fusedLocationClient: FusedLocationProviderClient) {
-    private lateinit var locationCallback: LocationCallback
-    private var previousLocation: Location? = null
-    private lateinit var onUpdateListener: (Double) -> Unit
+class PaceTracker(private val context: Context) {
 
-    fun startTracking(context: Context) {
-        val request: LocationRequest = LocationRequest.create()
+    private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 
+    private var onUpdateListener: ((Double) -> Unit)? = null
+    private var locationCallback = createLocationCallback()
+
+    fun startTracking() {
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -28,22 +25,15 @@ class PaceTracker(private var fusedLocationClient: FusedLocationProviderClient) 
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return
         }
 
-        fusedLocationClient.lastLocation.addOnSuccessListener {
-                location : Location? ->
-                previousLocation = location
-        }
-        locationCallback = createLocationCallback()
-        
+        val request: LocationRequest = LocationRequest.create()
+        request.interval = 2000
+        request.fastestInterval = 1500
+        request.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+
         fusedLocationClient.requestLocationUpdates(
             request,
             locationCallback,
@@ -55,21 +45,20 @@ class PaceTracker(private var fusedLocationClient: FusedLocationProviderClient) 
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
-    private fun calculatePace(startLocation: Location?, finalLocation: Location): Double {
-
-        return 0.0
+    private fun calculatePace(location: Location): Double {
+        return location.speed.toDouble()
     }
 
     private fun createLocationCallback(): LocationCallback {
         return object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                val pace = calculatePace(previousLocation, locationResult.lastLocation)
-                previousLocation = locationResult.lastLocation
-                onUpdateListener(pace)
+                val pace = calculatePace(locationResult.lastLocation)
+                onUpdateListener?.invoke(pace)
             }
         }
     }
 
-    fun setOnUpdateListener(listener: (Double) -> Void) {}
-
+    fun setOnUpdateListener(listener: (Double) -> Unit) {
+        onUpdateListener = listener
+    }
 }

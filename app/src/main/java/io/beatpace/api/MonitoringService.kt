@@ -19,7 +19,7 @@ class MonitoringService(
     private var binder = LocalBinder()
 
     override fun onBind(intent: Intent?): LocalBinder {
-        paceTracker = PaceTracker(LocationServices.getFusedLocationProviderClient(this))
+        paceTracker = PaceTracker(applicationContext)
         return binder
     }
 
@@ -32,7 +32,7 @@ class MonitoringService(
         if (pace < 0)
             throw NegativePaceException("Pace cannot be negative!")
         musicController.startPlaying(playlist, pace)
-        paceTracker.startTracking(this)
+        paceTracker.startTracking()
     }
 
     fun stopMonitoring() {
