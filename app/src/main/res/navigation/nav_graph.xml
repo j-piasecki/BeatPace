@@ -91,6 +91,9 @@
         <action
                 android:id="@+id/action_editPlaylistFragment_to_newSongFragment"
                 app:destination="@id/newSongFragment" />
+        <argument
+                android:name="playlistId"
+                app:argType="integer" />
     </fragment>
     <fragment
             android:id="@+id/newSongFragment"
@@ -102,5 +105,8 @@
                 app:destination="@id/editPlaylistFragment"
                 app:popUpTo="@id/editPlaylistFragment"
                 app:popUpToInclusive="true" />
+        <argument
+                android:name="playlistId"
+                app:argType="integer" />
     </fragment>
 </navigation>
