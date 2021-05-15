@@ -9,7 +9,7 @@
     <com.google.android.exoplayer2.ui.StyledPlayerView
             android:id="@+id/player_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             app:show_buffering="when_playing"
             app:show_shuffle_button="true"/>
 
@@ -22,4 +22,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+            android:id="@+id/pace_presenter"
+            android:layout_width="183dp"
+            android:layout_height="68dp"
+            android:layout_marginBottom="250dp"
+            android:text="Your pace"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

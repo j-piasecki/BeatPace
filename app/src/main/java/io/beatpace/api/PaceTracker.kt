@@ -7,6 +7,7 @@ import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
+import kotlin.math.round
 
 
 class PaceTracker(private val context: Context) {
@@ -46,7 +47,8 @@ class PaceTracker(private val context: Context) {
     }
 
     private fun calculatePace(location: Location): Double {
-        return location.speed.toDouble()
+        val originalSpeed = location.speed.toDouble()
+        return round(originalSpeed * 100) / 100
     }
 
     private fun createLocationCallback(): LocationCallback {
