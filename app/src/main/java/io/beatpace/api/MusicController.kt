@@ -11,14 +11,17 @@ import java.util.*
 class MusicController(private val exoPlayer: SimpleExoPlayer) {
 
     private var targetPace: Double = 0.0
+    private var canStartPlaying: Boolean = true
 
     fun startPlaying(playlist: Playlist, pace: Double) {
-        this.targetPace = pace
-        val mediaItemList = getMediaItemList(playlist)
-        exoPlayer.addMediaItems(mediaItemList)
-
-        exoPlayer.prepare()
-        exoPlayer.play()
+        if (canStartPlaying) {
+            this.targetPace = pace
+            val mediaItemList = getMediaItemList(playlist)
+            exoPlayer.addMediaItems(mediaItemList)
+            exoPlayer.prepare()
+            exoPlayer.play()
+            canStartPlaying = false
+        }
     }
 
     fun stopPlaying() {
@@ -54,12 +57,5 @@ class MusicController(private val exoPlayer: SimpleExoPlayer) {
 
         return LinkedList(listOf(a))
     }
-
-    fun getCurrentSong(): MediaItem? {
-        return exoPlayer.currentMediaItem
-    }
-
-    /* ----------- */
-
 
 }
