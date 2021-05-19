@@ -48,7 +48,7 @@ class MonitoringServiceTest {
 
         service.startMonitoring(playlist, pace)
 
-        verify(mockedPaceTracker, times(1)).startTracking(service)
+        verify(mockedPaceTracker, times(1)).startTracking()
     }
 
     @Test

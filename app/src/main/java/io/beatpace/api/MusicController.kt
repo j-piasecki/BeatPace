@@ -2,6 +2,7 @@ package io.beatpace.api
 
 import android.content.ContentUris
 import android.provider.MediaStore
+import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.StyledPlayerView
@@ -15,6 +16,7 @@ class MusicController(private val exoPlayer: SimpleExoPlayer) {
 
     fun startPlaying(playlist: Playlist, pace: Double) {
         if (canStartPlaying) {
+            exoPlayer.repeatMode = ExoPlayer.REPEAT_MODE_ALL
             this.targetPace = pace
             val mediaItemList = getMediaItemList(playlist)
             exoPlayer.addMediaItems(mediaItemList)
@@ -51,11 +53,7 @@ class MusicController(private val exoPlayer: SimpleExoPlayer) {
             mediaItemList.add(item)
         }
 
-        //TODO remove
-        val a =
-            MediaItem.fromUri("file:///android_asset/Game of Thrones S8 Official Soundtrack A Song of Ice and Fire - Ramin Djawadi WaterTower.mp3");
-
-        return LinkedList(listOf(a))
+        return mediaItemList
     }
 
 }

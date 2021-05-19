@@ -17,12 +17,14 @@ import io.beatpace.MainActivity.Companion.CHANNEL_ID
 import io.beatpace.R
 import io.beatpace.api.data.structures.Playlist
 import io.beatpace.exceptions.NegativePaceException
+import io.beatpace.fragments.MonitoringFragment
 
 
 class MonitoringService: Service() {
 
     companion object {
         const val NOTIFICATION_ID = 1
+        var isRunning = false
     }
 
     lateinit var musicController: MusicController
@@ -45,26 +47,29 @@ class MonitoringService: Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         startForeground(NOTIFICATION_ID, setUpNotification(0.0))
-        //TODO another return value?
-        return START_NOT_STICKY
+        return START_REDELIVER_INTENT
     }
 
     fun startMonitoring(playlist: Playlist, pace: Double) {
         if (pace < 0)
             throw NegativePaceException("Pace cannot be negative!")
 
-        maxPace = pace
-
         musicController.attachToView(StyledPlayerView(this))
         paceTracker.setOnUpdateListener(this::onPaceUpdate)
 
-        musicController.startPlaying(playlist, pace)
-        paceTracker.startTracking()
+        if (!isRunning) {
+            isRunning = true
+            maxPace = pace
+
+            musicController.startPlaying(playlist, pace)
+            paceTracker.startTracking()
+        }
     }
 
     fun stopMonitoring() {
         musicController.stopPlaying()
         paceTracker.stopTracking()
+        isRunning = false;
     }
 
     fun setPaceDisplayListener(listener: (Double) -> Unit) {

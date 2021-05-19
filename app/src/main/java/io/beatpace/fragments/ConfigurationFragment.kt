@@ -46,12 +46,11 @@ class ConfigurationFragment : Fragment() {
     }
 
     private fun onStartClick(view: View) {
-        //TODO uncomment
-//        if (viewModel.getDataConfig().getSelectedPlaylistId() >= 0) {
+        if (viewModel.getDataConfig().getSelectedPlaylistId() >= 0) {
             findNavController().navigate(ConfigurationFragmentDirections.actionConfigurationFragmentToMonitoringFragment())
-//        } else {
-//            Toast.makeText(context, requireContext().getString(R.string.no_playlist_selected), Toast.LENGTH_SHORT).show()
-//        }
+        } else {
+            Toast.makeText(context, requireContext().getString(R.string.no_playlist_selected), Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setPaceText(pace: Double) {

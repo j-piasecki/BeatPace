@@ -81,10 +81,9 @@ class MonitoringFragment : Fragment() {
         service.setPaceDisplayListener(this::showCurrentPace)
 
         val dataConfig = viewModel.getDataConfig()
-        val songs = ArrayList<Long>(listOf(1))
-        val playlist = Playlist("New playlist", 1, songs)
+        val playlist = viewModel.getPlaylistManager().getPlaylistById(dataConfig.getSelectedPlaylistId())
         val pace = dataConfig.getSelectedPace()
-        service.startMonitoring(playlist, pace)
+        service.startMonitoring(playlist!!, pace)
     }
 
     private fun showCurrentPace(pace: Double) {
