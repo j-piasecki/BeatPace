@@ -9,7 +9,6 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import kotlin.math.round
 
-
 class PaceTracker(private val context: Context) {
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)

@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 
 import androidx.navigation.fragment.findNavController
 import io.beatpace.R
+import io.beatpace.api.MonitoringService
 import io.beatpace.api.PaceTracker
 import io.beatpace.api.ViewModel
 
@@ -28,6 +30,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (MonitoringService.isRunning) {
+            findNavController().navigate(R.id.monitoringFragment)
+        }
 
         view.findViewById<Button>(R.id.home_start_button).setOnClickListener(this::onStartClick)
         view.findViewById<Button>(R.id.home_playlists_button).setOnClickListener(this::onPlaylistsClick)
