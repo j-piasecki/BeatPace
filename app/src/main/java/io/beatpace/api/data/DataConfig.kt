@@ -3,6 +3,7 @@ package io.beatpace.api.data
 import android.content.Context
 import android.content.SharedPreferences
 import io.beatpace.exceptions.NegativePaceException
+import kotlin.math.roundToInt
 
 class DataConfig private constructor(private val preferences: SharedPreferences) {
 
@@ -10,7 +11,7 @@ class DataConfig private constructor(private val preferences: SharedPreferences)
     private var selectedPace: Double = 0.0
 
     init {
-        selectedPace = preferences.getFloat(KEY_SELECTED_PACE, 0f).toDouble()
+        selectedPace = (preferences.getFloat(KEY_SELECTED_PACE, 0f) * 10).roundToInt() * 0.1
         selectedPlaylistId = preferences.getInt(KEY_SELECTED_PLAYLIST, -1)
     }
 
