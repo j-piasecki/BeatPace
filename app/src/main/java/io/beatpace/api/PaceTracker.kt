@@ -16,6 +16,9 @@ class PaceTracker(private val context: Context) {
     private var onUpdateListener: ((Double) -> Unit)? = null
     private var locationCallback = createLocationCallback()
 
+    private var previousLocation: Location? = null
+    private var previousTime = 0L
+
     fun startTracking() {
         if (ActivityCompat.checkSelfPermission(
                 context,
@@ -46,8 +49,15 @@ class PaceTracker(private val context: Context) {
     }
 
     private fun calculatePace(location: Location): Double {
-        val originalSpeed = location.speed.toDouble()
-        return round(originalSpeed * 100) / 100
+        val result = if (previousLocation == null)
+                0.0
+            else
+                location.distanceTo(previousLocation).toDouble() * 1000 / (System.currentTimeMillis() - previousTime)
+
+        previousLocation = location
+        previousTime = System.currentTimeMillis()
+
+        return round(result * 100) / 100
     }
 
     private fun createLocationCallback(): LocationCallback {
