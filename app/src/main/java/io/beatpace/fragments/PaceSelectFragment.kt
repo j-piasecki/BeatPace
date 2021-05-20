@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.beatpace.R
 import io.beatpace.api.ViewModel
+import kotlin.math.floor
 
 class PaceSelectFragment : Fragment() {
 
@@ -33,14 +35,29 @@ class PaceSelectFragment : Fragment() {
     }
 
     private fun setDisplayedPace(pace: Double) {
-        view?.findViewById<EditText>(R.id.pace_select_input)?.setText(pace.toString())
+        val integerPicker = view?.findViewById<NumberPicker>(R.id.pace_select_integer) ?: return
+        val fractionPicker = view?.findViewById<NumberPicker>(R.id.pace_select_fraction) ?: return
+
+        integerPicker.minValue = 0
+        integerPicker.maxValue = 9
+
+        fractionPicker.minValue = 0
+        fractionPicker.maxValue = 9
+
+        val integer = floor(pace).toInt()
+        val fraction = floor((pace - integer) * 10).toInt()
+
+        integerPicker.value = integer
+        fractionPicker.value = fraction
     }
 
     private fun onConfirmClick(v: View) {
-        val newPace = view?.findViewById<EditText>(R.id.pace_select_input)?.text?.toString()?.toDoubleOrNull()
+        val integerPicker = view?.findViewById<NumberPicker>(R.id.pace_select_integer) ?: return
+        val fractionPicker = view?.findViewById<NumberPicker>(R.id.pace_select_fraction) ?: return
 
-        if (newPace != null)
-            viewModel.getDataConfig().setPace(newPace)
+        val pace = integerPicker.value + fractionPicker.value * 0.1
+
+        viewModel.getDataConfig().setPace(pace)
 
         findNavController().navigate(PaceSelectFragmentDirections.actionPaceSelectFragmentToConfigurationFragment())
     }
