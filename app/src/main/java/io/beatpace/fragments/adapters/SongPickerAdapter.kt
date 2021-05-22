@@ -28,10 +28,10 @@ class SongPickerAdapter(
     private val selectedSongs = ArrayList<Long>()
 
     init {
-        submitList(songs.keys.toList())
-
         for (i in 0 until playlist.getSize())
             selectedSongs.add(playlist.getSong(i))
+        submitList(songs.keys.toMutableList().apply { this.removeAll(selectedSongs) })
+        selectedSongs.clear()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

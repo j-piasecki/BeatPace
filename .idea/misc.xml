@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/row_playlist_pick.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/row_song.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/row_song_pick.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
