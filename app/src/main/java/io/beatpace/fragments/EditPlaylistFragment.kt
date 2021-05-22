@@ -50,7 +50,7 @@ class EditPlaylistFragment : Fragment() {
         findNavController().navigate(EditPlaylistFragmentDirections.actionEditPlaylistFragmentToNewSongFragment(args.playlistId))
     }
 
-    private fun onDeletePlaylistClick(playlistId: Int) {
+    private fun onDeletePlaylistClick(songId: Long) {
 
     }
 }

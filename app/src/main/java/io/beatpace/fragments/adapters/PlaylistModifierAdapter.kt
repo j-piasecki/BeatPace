@@ -3,6 +3,7 @@ package io.beatpace.fragments.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -26,12 +27,7 @@ class PlaylistModifierAdapter(
 }) {
 
     init {
-        val songs = mutableListOf<Long>()
-
-        for (i in 0 until playlist.getSize())
-            songs.add(playlist.getSong(i))
-
-        submitList(songs)
+        updateList()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,6 +38,15 @@ class PlaylistModifierAdapter(
         holder.bind(position)
     }
 
+    private fun updateList() {
+        val songs = mutableListOf<Long>()
+
+        for (i in 0 until playlist.getSize())
+            songs.add(playlist.getSong(i))
+
+        submitList(songs)
+    }
+
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(position: Int) {
@@ -49,6 +54,12 @@ class PlaylistModifierAdapter(
 
             view.findViewById<TextView>(R.id.row_song_name).apply {
                 text = songs[songId]
+            }
+
+            view.findViewById<ImageView>(R.id.row_song_remove).setOnClickListener {
+                playlistManager.removeSongFromPlaylist(playlist.Id, songId)
+
+                updateList()
             }
         }
     }
