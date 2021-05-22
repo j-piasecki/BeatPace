@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.beatpace.R
 import io.beatpace.api.ViewModel
+import io.beatpace.api.data.structures.Playlist
 import io.beatpace.fragments.adapters.SongPickerAdapter
 
 class NewSongFragment : Fragment() {
@@ -46,6 +48,31 @@ class NewSongFragment : Fragment() {
     }
 
     private fun onConfirmClick(view: View) {
-        val selectedSongs = adapter.getSelectedSongs()
+        val playlistId = args.playlistId
+        val playlist = viewModel.getPlaylistManager().getPlaylistById(playlistId)
+        if (playlist != null) {
+            val songsAlreadyInPlaylist = getSongsFromPlaylist(playlist)
+            val selectedSongs = adapter.getSelectedSongs()
+            val list = ArrayList(selectedSongs).apply {
+                removeAll(songsAlreadyInPlaylist)
+            }
+            val playlistManager = viewModel.getPlaylistManager()
+
+            list.forEach {
+                playlistManager.addSongToPlaylist(playlistId, it)
+            }
+        }
+
+        findNavController().navigate(NewSongFragmentDirections.actionNewSongFragmentToEditPlaylistFragment(playlistId))
+    }
+
+    private fun getSongsFromPlaylist(playlist: Playlist): List<Long> {
+        val songsList = ArrayList<Long>()
+        for (i in 0 until playlist.getSize()) {
+            val id = playlist.getSong(i)
+            songsList.add(id)
+        }
+
+        return songsList
     }
 }
