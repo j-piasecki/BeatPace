@@ -46,7 +46,8 @@ class ConfigurationFragment : Fragment() {
     }
 
     private fun onStartClick(view: View) {
-        if (viewModel.getDataConfig().getSelectedPlaylistId() >= 0) {
+        val selectedPlaylist = viewModel.getDataConfig().getSelectedPlaylistId()
+        if (selectedPlaylist >= 0 && viewModel.getPlaylistManager().getPlaylistById(selectedPlaylist) != null) {
             findNavController().navigate(ConfigurationFragmentDirections.actionConfigurationFragmentToMonitoringFragment())
         } else {
             Toast.makeText(context, requireContext().getString(R.string.no_playlist_selected), Toast.LENGTH_SHORT).show()
