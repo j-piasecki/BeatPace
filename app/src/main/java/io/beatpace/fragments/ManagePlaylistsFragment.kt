@@ -28,6 +28,8 @@ class ManagePlaylistsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         adapter = PlaylistPickerAdapter(viewModel.getPlaylistManager(), this::onPlaylistClick)
+        adapter.deleteButtonVisible = true
+        adapter.setOnDeleteClickCallback(this::onDeletePlaylist)
 
         return inflater.inflate(R.layout.fragment_manage_playlists, container, false)
     }
@@ -72,5 +74,11 @@ class ManagePlaylistsFragment : Fragment() {
             .create()
 
         dialog.show()
+    }
+
+    private fun onDeletePlaylist(playlistId: Int) {
+        viewModel.getPlaylistManager().deletePlaylistById(playlistId)
+
+        //TODO ask user if they are sure
     }
 }

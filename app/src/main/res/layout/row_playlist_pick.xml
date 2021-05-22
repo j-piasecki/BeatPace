@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:clickable="true"
         android:focusable="true"
         android:background="?android:attr/selectableItemBackground">
 
-    <TextView
-            android:id="@+id/row_playlist_name"
-            android:text="Playlist"
-            android:background="@drawable/row_playlist_background"
-            android:padding="16dp"
-            android:maxLines="1"
-            android:ellipsize="end"
+    <LinearLayout
+            android:id="@+id/row_playlist_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/row_playlist_background"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="16dp"
+            android:gravity="center_vertical">
 
+        <TextView
+                android:id="@+id/row_playlist_name"
+                android:text="Playlist"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_height="wrap_content" />
+
+        <ImageView
+                android:id="@+id/row_playlist_delete"
+                android:src="@drawable/ic_add_24"
+                android:rotation="45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                app:tint="?android:attr/textColorSecondary" />
+    </LinearLayout>
 </RelativeLayout>

@@ -24,7 +24,10 @@ class PlaylistPickerAdapter(
     }
 }) {
 
+    var deleteButtonVisible = false
+
     private var selectedId = -1
+    private var deleteClickCallback: ((Int) -> Unit)? = null
 
     init {
         submitList(playlistManager.getAllPlaylists())
@@ -57,18 +60,30 @@ class PlaylistPickerAdapter(
         return selectedId
     }
 
+    fun setOnDeleteClickCallback(callback: (Int) -> Unit) {
+        deleteClickCallback = callback
+    }
+
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(position: Int) {
             val playlist = getItem(position)
 
-            view.findViewById<TextView>(R.id.row_playlist_name).apply {
-                isSelected = playlist.Id == selectedId
-                text = playlist.name
-            }
+            view.findViewById<TextView>(R.id.row_playlist_name).text = playlist.name
+            view.findViewById<View>(R.id.row_playlist_layout).isSelected = playlist.Id == selectedId
 
             view.setOnClickListener {
                 clickCallback.invoke(playlist.Id)
+            }
+
+            if (deleteButtonVisible) {
+                view.findViewById<View>(R.id.row_playlist_delete).setOnClickListener {
+                    deleteClickCallback?.invoke(playlist.Id)
+
+                    submitList(playlistManager.getAllPlaylists())
+                }
+            } else {
+                view.findViewById<View>(R.id.row_playlist_delete).visibility = View.GONE
             }
         }
     }
