@@ -73,6 +73,12 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <argument
+                android:name="runDuration"
+                app:argType="long" />
+        <argument
+                android:name="runDistance"
+                app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/managePlaylistsFragment"

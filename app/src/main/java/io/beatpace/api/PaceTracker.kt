@@ -16,8 +16,12 @@ class PaceTracker(private val context: Context) {
     private var onUpdateListener: ((Double) -> Unit)? = null
     private var locationCallback = createLocationCallback()
 
+    private var currentPace = 0.0
     private var previousLocation: Location? = null
     private var previousTime = 0L
+
+    private var runDuration = 0L
+    private var runDistance = 0.0
 
     fun startTracking() {
         if (ActivityCompat.checkSelfPermission(
@@ -42,22 +46,33 @@ class PaceTracker(private val context: Context) {
             locationCallback,
             Looper.getMainLooper()
         )
+
+        currentPace = 0.0
+        previousTime = System.currentTimeMillis()
     }
 
     fun stopTracking() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
+    fun getRunDistance() = runDistance
+
+    fun getRunDuration() = runDuration
+
+    fun getCurrentPace() = currentPace
+
     private fun calculatePace(location: Location): Double {
-        val result = if (previousLocation == null)
-                0.0
-            else
-                location.distanceTo(previousLocation).toDouble() * 1000 / (System.currentTimeMillis() - previousTime)
+        val elapsedTime = System.currentTimeMillis() - previousTime
+        val distance = if (previousLocation == null) 0.0 else location.distanceTo(previousLocation).toDouble()
+        currentPace = round(distance * 1000 / elapsedTime * 100) / 100
+
+        runDistance += distance
+        runDuration += elapsedTime
 
         previousLocation = location
         previousTime = System.currentTimeMillis()
 
-        return round(result * 100) / 100
+        return currentPace
     }
 
     private fun createLocationCallback(): LocationCallback {

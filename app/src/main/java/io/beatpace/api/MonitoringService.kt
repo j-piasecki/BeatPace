@@ -46,7 +46,7 @@ class MonitoringService: Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        startForeground(NOTIFICATION_ID, setUpNotification(0.0))
+        startForeground(NOTIFICATION_ID, setUpNotification(paceTracker.getCurrentPace()))
         return START_REDELIVER_INTENT
     }
 
@@ -79,6 +79,10 @@ class MonitoringService: Service() {
     fun attachPlayerToView(view: StyledPlayerView) {
         musicController.attachToView(view)
     }
+
+    fun getRunDistance() = paceTracker.getRunDistance()
+
+    fun getRunDuration() = paceTracker.getRunDuration()
 
     private fun setUpNotification(currPace: Double): Notification {
         val pendingIntent = NavDeepLinkBuilder(this)
