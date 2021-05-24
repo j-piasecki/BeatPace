@@ -63,11 +63,15 @@ class MonitoringFragment : Fragment() {
     }
 
     private fun onFinishClick(view: View) {
+        val duration = if (serviceBound) service.getRunDuration() else 0L
+        val distance = if (serviceBound) service.getRunDistance() else 0.0
+
         if (serviceBound) {
             service.stopMonitoring()
             service.stopSelf()
         }
-        findNavController().navigate(MonitoringFragmentDirections.actionMonitoringFragmentToEndFragment())
+
+        findNavController().navigate(MonitoringFragmentDirections.actionMonitoringFragmentToEndFragment(duration, distance.toFloat()))
     }
 
     private fun startService() {
