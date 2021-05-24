@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.beatpace.R
 import io.beatpace.api.ViewModel
+import io.beatpace.fragments.adapters.PlaylistExtendedPickerAdapter
 import io.beatpace.fragments.adapters.PlaylistPickerAdapter
 
 class ManagePlaylistsFragment : Fragment() {
@@ -27,9 +28,11 @@ class ManagePlaylistsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = PlaylistPickerAdapter(viewModel.getPlaylistManager(), this::onPlaylistClick)
-        adapter.deleteButtonVisible = true
-        adapter.setOnDeleteClickCallback(this::onDeletePlaylist)
+        adapter = PlaylistPickerAdapter.Builder(viewModel.getPlaylistManager())
+            .setDeleteButtonVisible(true)
+            .setClickCallback(this::onPlaylistClick)
+            .setDeleteClickCallback(this::onDeletePlaylist)
+            .build()
 
         return inflater.inflate(R.layout.fragment_manage_playlists, container, false)
     }
