@@ -23,7 +23,11 @@ class PlaylistSelectFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = PlaylistPickerAdapter(viewModel.getPlaylistManager(), this::onPlaylistSelected)
+        adapter = PlaylistPickerAdapter.Builder(viewModel.getPlaylistManager())
+            .setDeleteButtonVisible(false)
+            .setClickCallback(this::onPlaylistSelected)
+            .build()
+
         adapter.setSelectedPlaylist(viewModel.getDataConfig().getSelectedPlaylistId())
 
         return inflater.inflate(R.layout.fragment_playlist_select, container, false)

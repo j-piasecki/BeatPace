@@ -11,9 +11,9 @@ import io.beatpace.R
 import io.beatpace.api.PlaylistManager
 import io.beatpace.api.data.structures.Playlist
 
-class PlaylistPickerAdapter(
+open class PlaylistPickerAdapter(
     private val playlistManager: PlaylistManager,
-    private val clickCallback: (Int) -> Unit
+    private val clickCallback: ((Int) -> Unit)?
 ) : ListAdapter<Playlist, PlaylistPickerAdapter.ViewHolder>(object : DiffUtil.ItemCallback<Playlist>() {
     override fun areItemsTheSame(oldItem: Playlist, newItem: Playlist): Boolean {
         return oldItem.Id == newItem.Id
@@ -24,10 +24,7 @@ class PlaylistPickerAdapter(
     }
 }) {
 
-    var deleteButtonVisible = false
-
-    private var selectedId = -1
-    private var deleteClickCallback: ((Int) -> Unit)? = null
+    protected var selectedId = -1
 
     init {
         submitList(playlistManager.getAllPlaylists())
@@ -60,31 +57,55 @@ class PlaylistPickerAdapter(
         return selectedId
     }
 
-    fun setOnDeleteClickCallback(callback: (Int) -> Unit) {
-        deleteClickCallback = callback
-    }
+    open inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-
-        fun bind(position: Int) {
+        open fun bind(position: Int) {
             val playlist = getItem(position)
 
             view.findViewById<TextView>(R.id.row_playlist_name).text = playlist.name
             view.findViewById<View>(R.id.row_playlist_layout).isSelected = playlist.Id == selectedId
 
             view.setOnClickListener {
-                clickCallback.invoke(playlist.Id)
+                clickCallback?.invoke(playlist.Id)
             }
 
-            if (deleteButtonVisible) {
-                view.findViewById<View>(R.id.row_playlist_delete).setOnClickListener {
-                    deleteClickCallback?.invoke(playlist.Id)
+            view.findViewById<View>(R.id.row_playlist_delete).visibility = View.GONE
+        }
+    }
 
-                    submitList(playlistManager.getAllPlaylists())
-                }
+    class Builder(private val playlistManager: PlaylistManager) {
+        private var deleteButtonVisible = false
+        private var clickCallback: ((Int) -> Unit)? = null
+        private var deleteClickCallback: ((Int) -> Unit)? = null
+
+        fun build(): PlaylistPickerAdapter {
+            return if (deleteButtonVisible) {
+                PlaylistExtendedPickerAdapter(
+                    playlistManager,
+                    clickCallback,
+                    deleteClickCallback
+                )
             } else {
-                view.findViewById<View>(R.id.row_playlist_delete).visibility = View.GONE
+                PlaylistPickerAdapter(
+                    playlistManager,
+                    clickCallback
+                )
             }
+        }
+
+        fun setDeleteButtonVisible(visible: Boolean): Builder {
+            deleteButtonVisible = visible
+            return this
+        }
+
+        fun setClickCallback(callback: (Int) -> Unit): Builder {
+            clickCallback = callback
+            return this
+        }
+
+        fun setDeleteClickCallback(callback: (Int) -> Unit): Builder {
+            deleteClickCallback = callback
+            return this
         }
     }
 }
