@@ -39,6 +39,8 @@ class ViewModel(private val app: Application) : AndroidViewModel(app) {
             MediaStore.Audio.Media.TITLE
         )
 
+        songs.clear()
+
         if (cursor != null && cursor.count > 0) {
             while (cursor.moveToNext()) {
                 songs[cursor.getLong(0)] = cursor.getString(1)
