@@ -6,6 +6,19 @@
         android:layout_height="match_parent"
         tools:context=".fragments.PaceSelectFragment">
 
+    <ImageView
+            android:src="@drawable/paceselect_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:id="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0" />
+
     <NumberPicker
             android:id="@+id/pace_select_integer"
             android:layout_width="wrap_content"
@@ -29,6 +42,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/pace_select_integer" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:backgroundTint="#303030"
             android:id="@+id/pace_select_confirm_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,4 +74,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/pace_select_fraction"
             android:layout_marginTop="2dp"
             android:layout_marginStart="8dp" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

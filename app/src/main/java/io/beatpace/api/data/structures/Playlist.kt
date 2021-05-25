@@ -5,6 +5,7 @@ data class Playlist(var name: String, var Id: Int, private val songList: Mutable
     fun addSongId(songId: Long) {
         if (!containsSong(songId)) // sprawdza czy piosenka nie jest już w playliscie
             songList.add(songId)
+
     }
 
     fun deleteSongId(songId: Long) {

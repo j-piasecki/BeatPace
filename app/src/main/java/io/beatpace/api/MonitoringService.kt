@@ -3,24 +3,18 @@ package io.beatpace.api
 import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Binder
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
-import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.ui.PlayerNotificationManager
-import com.google.android.exoplayer2.ui.PlayerNotificationManager.BitmapCallback
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import io.beatpace.MainActivity.Companion.CHANNEL_ID
 import io.beatpace.R
 import io.beatpace.api.data.structures.Playlist
 import io.beatpace.exceptions.NegativePaceException
-import io.beatpace.fragments.MonitoringFragment
 
 
-class MonitoringService: Service() {
+class MonitoringService : Service() {
 
     companion object {
         const val NOTIFICATION_ID = 1
@@ -90,10 +84,12 @@ class MonitoringService: Service() {
             .setDestination(R.id.monitoringFragment)
             .createPendingIntent()
 
+
         return NotificationCompat.Builder(this, CHANNEL_ID).apply {
             setContentTitle("BeatPace pace tracker")
             setContentText("Your current speed: $currPace, given pace: $maxPace")
-            setSmallIcon(R.drawable.ic_android)
+            setSmallIcon(R.drawable.ic_servicelogo)
+            color = getColor(R.color.black)
             setContentIntent(pendingIntent)
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
         }.build()

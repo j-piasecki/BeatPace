@@ -1,63 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.ConfigurationFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.ConfigurationFragment">
+
+
+    <ImageView
+            android:src="@drawable/configuration_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:id="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/configuration_current_speed"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="128dp"
-        android:text="Speed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/configuration_current_speed"
+            android:background="@drawable/frame"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="150dp"
+            android:text="Speed"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
     <TextView
-        android:id="@+id/configuration_current_playlist"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="128dp"
-        android:text="Playlist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/configuration_set_speed" />
+            android:id="@+id/configuration_current_playlist"
+            android:background="@drawable/frame"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="150dp"
+            android:textStyle="bold"
+
+            android:text="Playlist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/configuration_set_speed" />
 
     <Button
-        android:id="@+id/configuration_set_speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change"
-        app:layout_constraintBottom_toBottomOf="@+id/configuration_current_speed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/configuration_current_speed"
-        app:layout_constraintTop_toTopOf="@+id/configuration_current_speed" />
+            android:id="@+id/configuration_set_speed"
+            android:text="Change"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonshape2"
+            android:layout_marginEnd="13dp"
+            app:layout_constraintBottom_toBottomOf="@+id/configuration_current_speed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/speedIcon"
+            app:layout_constraintTop_toTopOf="@+id/configuration_current_speed" />
 
     <Button
-        android:id="@+id/configuration_set_playlist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change"
-        app:layout_constraintBottom_toBottomOf="@+id/configuration_current_playlist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/configuration_current_playlist"
-        app:layout_constraintTop_toTopOf="@+id/configuration_current_playlist" />
+            android:id="@+id/configuration_set_playlist"
+            android:text="Change"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/buttonshape2"
+
+            app:layout_constraintBottom_toBottomOf="@+id/configuration_current_playlist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/configuration_current_playlist"
+            app:layout_constraintTop_toTopOf="@+id/configuration_current_playlist"
+            app:layout_constraintHorizontal_bias="0.693"
+            app:layout_constraintVertical_bias="0.523" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/configuration_start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_arrow_forward_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            android:id="@+id/configuration_start_button"
+            android:backgroundTint="#303030"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_arrow_forward_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+            android:src="@drawable/pace_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/speedIcon"
+            app:layout_constraintEnd_toStartOf="@+id/configuration_set_speed"
+            app:layout_constraintStart_toEndOf="@+id/configuration_current_speed"
+            app:layout_constraintTop_toTopOf="@+id/configuration_current_speed"
+            app:layout_constraintBottom_toBottomOf="@+id/configuration_current_speed" />
+
+    <ImageView
+            android:src="@drawable/note_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/noteIcon"
+            app:layout_constraintStart_toEndOf="@+id/configuration_current_playlist"
+            app:layout_constraintEnd_toStartOf="@+id/configuration_set_playlist"
+
+            app:layout_constraintHorizontal_bias="0.538"
+            app:layout_constraintTop_toTopOf="@+id/configuration_current_playlist"
+            app:layout_constraintBottom_toBottomOf="@+id/configuration_current_playlist" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

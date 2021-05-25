@@ -21,7 +21,7 @@ import io.beatpace.api.ViewModel
 import io.beatpace.api.data.structures.Playlist
 import java.util.*
 
-class MonitoringFragment : Fragment() {
+class MonitoringFragment: Fragment() {
 
     private var serviceBound = false
     private lateinit var service: MonitoringService
