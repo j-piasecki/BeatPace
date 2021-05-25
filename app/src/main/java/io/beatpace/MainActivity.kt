@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createNotificationChannel() {
         val serviceChannel = NotificationChannel(CHANNEL_ID, "Monitoring service channel", NotificationManager.IMPORTANCE_DEFAULT)
+        serviceChannel.setSound(null, null)
 
         val manager = getSystemService(NotificationManager::class.java)
         manager.createNotificationChannel(serviceChannel)

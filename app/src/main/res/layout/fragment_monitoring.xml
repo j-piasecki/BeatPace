@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.MonitoringFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".fragments.MonitoringFragment">
+
+    <Button
+            android:id="@+id/monitoring_finish_button"
+            android:background="@drawable/buttonshape2"
+            android:backgroundTint="#303030"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finish"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            android:layout_marginBottom="24dp" />
+
+    <Button
+            android:id="@+id/pace_presenter"
+            android:layout_width="183dp"
+            android:layout_height="68dp"
+            android:text="Your pace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player_view"
+            app:layout_constraintBottom_toTopOf="@+id/monitoring_finish_button" />
+
+    <ImageView
+            android:src="@drawable/default_background"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/player_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
     <com.google.android.exoplayer2.ui.StyledPlayerView
             android:id="@+id/player_view"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             app:show_buffering="when_playing"
-            app:show_shuffle_button="true"/>
-
-    <Button
-        android:id="@+id/monitoring_finish_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Finish"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-            android:id="@+id/pace_presenter"
-            android:layout_width="183dp"
-            android:layout_height="68dp"
-            android:layout_marginBottom="250dp"
-            android:text="Your pace"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:show_shuffle_button="true"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

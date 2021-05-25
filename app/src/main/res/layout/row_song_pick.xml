@@ -6,10 +6,12 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="16dp"
+        android:backgroundTint="#e9e9e9"
         android:background="@drawable/row_song_pick_background">
 
     <TextView
             android:id="@+id/row_song_pick_name"
+            android:textStyle="bold"
             android:text="Song"
             android:maxLines="1"
             android:ellipsize="end"

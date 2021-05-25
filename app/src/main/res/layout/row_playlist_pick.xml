@@ -21,6 +21,7 @@
 
         <TextView
                 android:id="@+id/row_playlist_name"
+                android:textStyle="bold"
                 android:text="Playlist"
                 android:maxLines="1"
                 android:ellipsize="end"

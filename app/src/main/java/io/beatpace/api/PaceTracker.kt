@@ -17,6 +17,7 @@ class PaceTracker(private val context: Context) {
     private var locationCallback = createLocationCallback()
 
     private var currentPace = 0.0
+
     private var previousLocation: Location? = null
     private var previousTime = 0L
 
@@ -32,7 +33,6 @@ class PaceTracker(private val context: Context) {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-
             return
         }
 
@@ -87,4 +87,5 @@ class PaceTracker(private val context: Context) {
     fun setOnUpdateListener(listener: (Double) -> Unit) {
         onUpdateListener = listener
     }
+
 }
