@@ -9,7 +9,9 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +28,7 @@ class MonitoringFragment: Fragment() {
     private var serviceBound = false
     private lateinit var service: MonitoringService
     private val serviceConnection = MonitoringServiceConnection()
-    private lateinit var pacePresenter: Button
+    private lateinit var pacePresenter: TextView
     private val viewModel: ViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -45,6 +47,7 @@ class MonitoringFragment: Fragment() {
         startService()
         activity?.bindService(Intent(context, MonitoringService::class.java), serviceConnection, 0)
         view.findViewById<Button>(R.id.monitoring_finish_button).setOnClickListener(this::onFinishClick)
+        view.findViewById<View>(R.id.bounce_button_background).animation = AnimationUtils.loadAnimation(requireContext(), R.anim.bounce)
     }
 
     override fun onDestroyView() {
@@ -91,7 +94,7 @@ class MonitoringFragment: Fragment() {
     }
 
     private fun showCurrentPace(pace: Double) {
-        pacePresenter.text = "Pace: $pace m/s"
+        pacePresenter.text = "$pace"
     }
 
     inner class MonitoringServiceConnection: ServiceConnection {
