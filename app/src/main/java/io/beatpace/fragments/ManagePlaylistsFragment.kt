@@ -58,6 +58,7 @@ class ManagePlaylistsFragment : Fragment() {
         val view = layoutInflater.inflate(R.layout.dialog_new_playlist, null)
         val input = view.findViewById<EditText>(R.id.dialog_new_playlist_name)
 
+        //Create dialog for user to provide name for the playlist
         val dialog = AlertDialog.Builder(requireContext())
             .setView(view)
             .setCancelable(true)
@@ -69,10 +70,11 @@ class ManagePlaylistsFragment : Fragment() {
                 val name = input.text.toString().trim()
 
                 if (name.isNotEmpty()) {
+                    //Check if playlist with that name already exists
                     if (viewModel.getPlaylistManager().getAllPlaylists().firstOrNull { it.name.equals(name, ignoreCase = true) } == null) {
                         val id = viewModel.getPlaylistManager().createPlaylist(name)
 
-                        findNavController().navigate(ManagePlaylistsFragmentDirections.actionManagePlaylistsFragmentToEditPlaylistFragment(id))
+                        findNavController().navigate(ManagePlaylistsFragmentDirections.actionManagePlaylistsFragmentToNewSongFragment(id))
                     } else {
                         Toast.makeText(context, requireContext().getString(R.string.playlist_already_exists), Toast.LENGTH_SHORT).show()
                     }
@@ -86,17 +88,20 @@ class ManagePlaylistsFragment : Fragment() {
     }
 
     private fun onDeletePlaylist(playlistId: Int) {
+        //Create a copy of deleted playlist
         val deletedPlaylist = viewModel.getPlaylistManager().getPlaylistById(playlistId) ?: return
         viewModel.getPlaylistManager().deletePlaylistById(playlistId)
 
         Snackbar.make(requireView().findViewById(R.id.main_layout), requireContext().getString(R.string.playlist_deleted, deletedPlaylist.name), Snackbar.LENGTH_LONG)
             .setAction(requireContext().getString(R.string.undo)) {
+                //Put the copy back to the database
                 val id = viewModel.getPlaylistManager().createPlaylist(deletedPlaylist.name)
 
                 for (i in 0 until deletedPlaylist.getSize()) {
                     viewModel.getPlaylistManager().addSongToPlaylist(id, deletedPlaylist.getSong(i))
                 }
 
+                //Update the list in adapter
                 adapter.submitList(viewModel.getPlaylistManager().getAllPlaylists())
             }.show()
     }

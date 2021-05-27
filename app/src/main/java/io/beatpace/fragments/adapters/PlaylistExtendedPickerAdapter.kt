@@ -7,17 +7,28 @@ import android.widget.TextView
 import io.beatpace.R
 import io.beatpace.api.PlaylistManager
 
+/**
+ * Adapter extending playlist picker adapter, adds the option to delete playlists
+ */
+
 class PlaylistExtendedPickerAdapter(
     private val playlistManager: PlaylistManager,
     private val clickCallback: ((Int) -> Unit)?,
     private val deleteClickCallback: ((Int) -> Unit)?
 ) : PlaylistPickerAdapter(playlistManager, clickCallback) {
 
+    /**
+     * Creates an android view and wraps it with a view holder to allow modification
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistPickerAdapter.ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.row_playlist_pick, parent, false))
     }
 
     inner class ViewHolder(private val view: View) : PlaylistPickerAdapter.ViewHolder(view) {
+
+        /**
+         * Display info about playlist at specified position
+         */
         override fun bind(position: Int) {
             val playlist = getItem(position)
 

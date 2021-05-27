@@ -128,6 +128,13 @@
                 app:exitAnim="@anim/fragment_fade_exit"
                 app:popEnterAnim="@anim/fragment_fade_enter"
                 app:popExitAnim="@anim/fragment_fade_exit" />
+        <action
+                android:id="@+id/action_managePlaylistsFragment_to_newSongFragment"
+                app:destination="@id/newSongFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/editPlaylistFragment"
@@ -150,15 +157,6 @@
             android:name="io.beatpace.fragments.NewSongFragment"
             android:label="fragment_new_song"
             tools:layout="@layout/fragment_new_song" >
-        <action
-                android:id="@+id/action_newSongFragment_to_editPlaylistFragment"
-                app:destination="@id/editPlaylistFragment"
-                app:popUpTo="@id/editPlaylistFragment"
-                app:popUpToInclusive="true"
-                app:enterAnim="@anim/fragment_fade_enter"
-                app:exitAnim="@anim/fragment_fade_exit"
-                app:popEnterAnim="@anim/fragment_fade_enter"
-                app:popExitAnim="@anim/fragment_fade_exit" />
         <argument
                 android:name="playlistId"
                 app:argType="integer" />

@@ -11,6 +11,10 @@ import io.beatpace.R
 import io.beatpace.api.PlaylistManager
 import io.beatpace.api.data.structures.Playlist
 
+/**
+ * Adapter that allows to display list of playlists and pick one of them, invoking the callback
+ */
+
 open class PlaylistPickerAdapter(
     private val playlistManager: PlaylistManager,
     private val clickCallback: ((Int) -> Unit)?
@@ -30,14 +34,23 @@ open class PlaylistPickerAdapter(
         submitList(playlistManager.getAllPlaylists())
     }
 
+    /**
+     * Creates an android view and wraps it with a view holder to allow modification
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.row_playlist_pick, parent, false))
     }
 
+    /**
+     * Binds specific item from the list to specified view holder, displaying the content on the screen
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(position)
     }
 
+    /**
+     * Selects playlist with specified id, if other is already selected, unselects it
+     */
     fun setSelectedPlaylist(id: Int) {
         val previousSelected = selectedId
         selectedId = id
@@ -59,6 +72,9 @@ open class PlaylistPickerAdapter(
 
     open inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
+        /**
+         * Display info about playlist at specified position
+         */
         open fun bind(position: Int) {
             val playlist = getItem(position)
 
@@ -73,6 +89,9 @@ open class PlaylistPickerAdapter(
         }
     }
 
+    /**
+     * Builder class that allows configuration of playlist picker adapter
+     */
     class Builder(private val playlistManager: PlaylistManager) {
         private var deleteButtonVisible = false
         private var clickCallback: ((Int) -> Unit)? = null

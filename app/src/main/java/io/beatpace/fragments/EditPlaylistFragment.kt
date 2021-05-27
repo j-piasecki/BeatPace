@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -44,6 +45,10 @@ class EditPlaylistFragment : Fragment() {
         recyclerView.adapter = adapter
 
         view.findViewById<FloatingActionButton>(R.id.edit_playlist_add_song).setOnClickListener(this::onAddSongClick)
+
+        if (viewModel.getPlaylistManager().getPlaylistById(args.playlistId)!!.getSize() > 0) {
+            view.findViewById<TextView>(R.id.edit_playlist_empty_playlist).visibility = View.GONE
+        }
     }
 
     private fun onAddSongClick(view: View) {
