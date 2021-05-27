@@ -87,8 +87,8 @@ class MonitoringService : Service() {
 
 
         return NotificationCompat.Builder(this, CHANNEL_ID).apply {
-            setContentTitle("Pace tracker")
-            setContentText("Your current speed: $currPace")
+            setContentTitle(getString(R.string.pace_tracker))
+            setContentText(getString(R.string.notification_text, currPace))
             setSmallIcon(R.drawable.ic_servicelogo)
             color = getColor(R.color.black)
             setContentIntent(pendingIntent)

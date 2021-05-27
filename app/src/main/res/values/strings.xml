@@ -7,4 +7,17 @@
     <string name="playlist_already_exists">Playlist with that name already exists</string>
     <string name="undo">Undo</string>
     <string name="playlist_deleted">Deleted: %1$s</string>
+    <string name="input_playlist_name">Playlist name</string>
+    <string name="text_speed">Speed</string>
+    <string name="text_playlist">Playlist</string>
+    <string name="text_change">Change</string>
+    <string name="text_average_pace">Average pace</string>
+    <string name="text_distance">Distance</string>
+    <string name="text_time">Time</string>
+    <string name="text_start">Start</string>
+    <string name="text_playlists">Playlists</string>
+    <string name="text_finish">Finish</string>
+    <string name="pace_tracker">Pace tracker</string>
+    <string name="notification_text">Your current speed: %1$.2f</string>
+    <string name="meters">%1$.2f meters</string>
 </resources>

@@ -28,7 +28,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="140dp"
             android:layout_marginEnd="150dp"
-            android:text="Speed"
+            android:text="@string/text_speed"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
             android:maxLines="1"
             android:ellipsize="end"
 
-            android:text="Playlist"
+            android:text="@string/text_playlist"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/configuration_set_speed"
@@ -55,7 +55,7 @@
 
     <Button
             android:id="@+id/configuration_set_speed"
-            android:text="Change"
+            android:text="@string/text_change"
             android:textColor="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -68,7 +68,7 @@
 
     <Button
             android:id="@+id/configuration_set_playlist"
-            android:text="Change"
+            android:text="@string/text_change"
             android:textColor="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
