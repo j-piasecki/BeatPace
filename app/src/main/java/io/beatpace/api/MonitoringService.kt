@@ -15,6 +15,9 @@ import io.beatpace.exceptions.NegativePaceException
 import java.math.BigDecimal
 import java.math.RoundingMode
 
+/**
+ * Starts monitoring and controls PaceTracker and MusicController
+ */
 
 class MonitoringService : Service() {
 
@@ -46,6 +49,9 @@ class MonitoringService : Service() {
         return START_REDELIVER_INTENT
     }
 
+    /**
+     * Begins monitoring if not yet started
+     */
     fun startMonitoring(playlist: Playlist, pace: Double) {
         if (pace < 0)
             throw NegativePaceException("Pace cannot be negative!")

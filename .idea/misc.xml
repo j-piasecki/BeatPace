@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/dialog_new_playlist.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/fragment_configuration.xml" value="0.264" />
+        <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/fragment_edit_playlist.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/fragment_home.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/row_playlist_pick.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/row_song.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/402434/AndroidStudioProjects/BeatPace/app/src/main/res/layout/row_song_pick.xml" value="0.25416666666666665" />

@@ -5,6 +5,10 @@ import android.content.SharedPreferences
 import io.beatpace.exceptions.NegativePaceException
 import kotlin.math.roundToInt
 
+/**
+ * Stores previous configuration data and sets correct parameters
+ */
+
 class DataConfig private constructor(private val preferences: SharedPreferences) {
 
     private var selectedPlaylistId: Int = 0

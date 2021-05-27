@@ -9,6 +9,10 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import kotlin.math.round
 
+/**
+ * Tracks current location and tracks current pace
+ */
+
 class PaceTracker(private val context: Context) {
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)

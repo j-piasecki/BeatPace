@@ -7,6 +7,10 @@ import androidx.room.Room
 import io.beatpace.api.data.DataConfig
 import io.beatpace.database.AppDatabase
 
+/**
+ * Eases access between classes, fragments and storage
+ */
+
 class ViewModel(private val app: Application) : AndroidViewModel(app) {
 
     private var songs = HashMap<Long, String>()
@@ -30,6 +34,9 @@ class ViewModel(private val app: Application) : AndroidViewModel(app) {
         return songs
     }
 
+    /**
+     * Loads media from system
+     */
     fun loadSongs() {
         val cursor = app.contentResolver?.query(
             MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,

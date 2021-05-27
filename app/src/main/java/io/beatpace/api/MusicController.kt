@@ -10,6 +10,10 @@ import io.beatpace.api.data.structures.Playlist
 import java.util.*
 import kotlin.math.pow
 
+/**
+ * Controls current media playing
+ */
+
 class MusicController(private val exoPlayer: SimpleExoPlayer) {
 
     private var targetPace: Double = 0.0
@@ -27,6 +31,9 @@ class MusicController(private val exoPlayer: SimpleExoPlayer) {
         }
     }
 
+    /**
+     * Stops and releases exoPlayer
+     */
     fun stopPlaying() {
         exoPlayer.stop()
         exoPlayer.release()
