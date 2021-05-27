@@ -11,11 +11,19 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_configurationFragment"
-            app:destination="@id/configurationFragment" />
+                android:id="@+id/action_homeFragment_to_configurationFragment"
+                app:destination="@id/configurationFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
         <action
-            android:id="@+id/action_homeFragment_to_managePlaylistsFragment"
-            app:destination="@id/managePlaylistsFragment" />
+                android:id="@+id/action_homeFragment_to_managePlaylistsFragment"
+                app:destination="@id/managePlaylistsFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/configurationFragment"
@@ -23,14 +31,26 @@
         android:label="fragment_configuration"
         tools:layout="@layout/fragment_configuration" >
         <action
-            android:id="@+id/action_configurationFragment_to_playlistSelectFragment"
-            app:destination="@id/playlistSelectFragment" />
+                android:id="@+id/action_configurationFragment_to_playlistSelectFragment"
+                app:destination="@id/playlistSelectFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
         <action
-            android:id="@+id/action_configurationFragment_to_paceSelectFragment"
-            app:destination="@id/paceSelectFragment" />
+                android:id="@+id/action_configurationFragment_to_paceSelectFragment"
+                app:destination="@id/paceSelectFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
         <action
-            android:id="@+id/action_configurationFragment_to_monitoringFragment"
-            app:destination="@id/monitoringFragment" />
+                android:id="@+id/action_configurationFragment_to_monitoringFragment"
+                app:destination="@id/monitoringFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/playlistSelectFragment"
@@ -38,10 +58,14 @@
         android:label="fragment_playlist_select"
         tools:layout="@layout/fragment_playlist_select" >
         <action
-            android:id="@+id/action_playlistSelectFragment_to_configurationFragment2"
-            app:destination="@id/configurationFragment"
-            app:popUpTo="@id/configurationFragment"
-            app:popUpToInclusive="true" />
+                android:id="@+id/action_playlistSelectFragment_to_configurationFragment2"
+                app:destination="@id/configurationFragment"
+                app:popUpTo="@id/configurationFragment"
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/paceSelectFragment"
@@ -49,10 +73,14 @@
         android:label="fragment_pace_select"
         tools:layout="@layout/fragment_pace_select" >
         <action
-            android:id="@+id/action_paceSelectFragment_to_configurationFragment"
-            app:destination="@id/configurationFragment"
-            app:popUpTo="@id/configurationFragment"
-            app:popUpToInclusive="true" />
+                android:id="@+id/action_paceSelectFragment_to_configurationFragment"
+                app:destination="@id/configurationFragment"
+                app:popUpTo="@id/configurationFragment"
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/monitoringFragment"
@@ -60,8 +88,12 @@
         android:label="fragment_monitoring"
         tools:layout="@layout/fragment_monitoring" >
         <action
-            android:id="@+id/action_monitoringFragment_to_endFragment"
-            app:destination="@id/endFragment" />
+                android:id="@+id/action_monitoringFragment_to_endFragment"
+                app:destination="@id/endFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/endFragment"
@@ -69,10 +101,14 @@
         android:label="fragment_end"
         tools:layout="@layout/fragment_end" >
         <action
-            android:id="@+id/action_endFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+                android:id="@+id/action_endFragment_to_homeFragment"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/homeFragment"
+                app:popUpToInclusive="true"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
         <argument
                 android:name="runDuration"
                 app:argType="long" />
@@ -86,8 +122,12 @@
         android:label="fragment_manage_playlists"
         tools:layout="@layout/fragment_manage_playlists" >
         <action
-            android:id="@+id/action_managePlaylistsFragment_to_editPlaylistFragment"
-            app:destination="@id/editPlaylistFragment" />
+                android:id="@+id/action_managePlaylistsFragment_to_editPlaylistFragment"
+                app:destination="@id/editPlaylistFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/editPlaylistFragment"
@@ -96,7 +136,11 @@
         tools:layout="@layout/fragment_edit_playlist" >
         <action
                 android:id="@+id/action_editPlaylistFragment_to_newSongFragment"
-                app:destination="@id/newSongFragment" />
+                app:destination="@id/newSongFragment"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
         <argument
                 android:name="playlistId"
                 app:argType="integer" />
@@ -110,7 +154,11 @@
                 android:id="@+id/action_newSongFragment_to_editPlaylistFragment"
                 app:destination="@id/editPlaylistFragment"
                 app:popUpTo="@id/editPlaylistFragment"
-                app:popUpToInclusive="true" />
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:exitAnim="@anim/fragment_fade_exit"
+                app:popEnterAnim="@anim/fragment_fade_enter"
+                app:popExitAnim="@anim/fragment_fade_exit" />
         <argument
                 android:name="playlistId"
                 app:argType="integer" />
