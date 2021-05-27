@@ -8,6 +8,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import io.beatpace.api.data.structures.Playlist
 import java.util.*
+import kotlin.math.pow
 
 class MusicController(private val exoPlayer: SimpleExoPlayer) {
 
