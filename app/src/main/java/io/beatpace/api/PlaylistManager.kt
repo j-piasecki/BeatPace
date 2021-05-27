@@ -5,6 +5,10 @@ import io.beatpace.database.DAO
 import io.beatpace.database.PlaylistContent
 import io.beatpace.database.PlaylistEntity
 
+/**
+ *  Manages and stores all playlists while app is running
+ */
+
 class PlaylistManager(private val dao: DAO) {
 
     private lateinit var playlists: MutableMap<Int, Playlist>
@@ -15,9 +19,9 @@ class PlaylistManager(private val dao: DAO) {
 
         for ( i in entityList.indices){ // creating and adding all our playlists into our map from the database
 
-            var songList = ArrayList<Long>()// a list of all the songs in current playlist
+            val songList = ArrayList<Long>()// a list of all the songs in current playlist
 
-            var contentList = dao.getAllSongs(entityList[i].playlistId!!)
+            val contentList = dao.getAllSongs(entityList[i].playlistId!!)
 
             for (j in contentList.indices){ // convert playlistContent list into a list of songId's (Long)
                 songList.add(contentList[j].songId)
@@ -45,7 +49,7 @@ class PlaylistManager(private val dao: DAO) {
 
     fun createPlaylist(playlistName: String): Int {
         var newPlaylistId = dao.createNewPlaylist(playlistName).toInt()
-        var newPlaylist = Playlist( playlistName, newPlaylistId, mutableListOf()) // w ten sposób?
+        var newPlaylist = Playlist( playlistName, newPlaylistId, mutableListOf())
         playlists.put(newPlaylistId, newPlaylist)
         return newPlaylistId
     }
