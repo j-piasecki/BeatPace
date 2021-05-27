@@ -19,6 +19,7 @@ import io.beatpace.R
 import io.beatpace.api.ViewModel
 import io.beatpace.fragments.adapters.PlaylistExtendedPickerAdapter
 import io.beatpace.fragments.adapters.PlaylistPickerAdapter
+import java.util.*
 
 class ManagePlaylistsFragment : Fragment() {
 
@@ -68,11 +69,15 @@ class ManagePlaylistsFragment : Fragment() {
                 val name = input.text.toString().trim()
 
                 if (name.isNotEmpty()) {
-                    val id = viewModel.getPlaylistManager().createPlaylist(name)
+                    if (viewModel.getPlaylistManager().getAllPlaylists().firstOrNull { it.name.equals(name, ignoreCase = true) } == null) {
+                        val id = viewModel.getPlaylistManager().createPlaylist(name)
 
-                    findNavController().navigate(ManagePlaylistsFragmentDirections.actionManagePlaylistsFragmentToEditPlaylistFragment(id))
+                        findNavController().navigate(ManagePlaylistsFragmentDirections.actionManagePlaylistsFragmentToEditPlaylistFragment(id))
+                    } else {
+                        Toast.makeText(context, requireContext().getString(R.string.playlist_already_exists), Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    Toast.makeText(context, requireContext().getString(R.string.no_playlist_selected), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, requireContext().getString(R.string.name_cannot_be_empty), Toast.LENGTH_SHORT).show()
                 }
             }
             .create()

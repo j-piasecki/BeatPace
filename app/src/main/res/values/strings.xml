@@ -3,6 +3,7 @@
     <string name="no_playlist_selected">No playlist selected</string>
     <string name="create_new_playlist">Create new playlist</string>
     <string name="name_cannot_be_empty">Name cannot be empty</string>
+    <string name="playlist_already_exists">Playlist with that name already exists</string>
     <string name="undo">Undo</string>
     <string name="playlist_deleted">Deleted: %1$s</string>
 </resources>
