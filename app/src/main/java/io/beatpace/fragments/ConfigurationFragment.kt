@@ -14,6 +14,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.beatpace.R
 import io.beatpace.api.ViewModel
 import io.beatpace.api.data.structures.Playlist
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class ConfigurationFragment : Fragment() {
 
@@ -55,7 +57,8 @@ class ConfigurationFragment : Fragment() {
     }
 
     private fun setPaceText(pace: Double) {
-        view?.findViewById<TextView>(R.id.configuration_current_speed)?.text = pace.toString()
+        view?.findViewById<TextView>(R.id.configuration_current_speed)?.text =
+            BigDecimal.valueOf(pace).setScale(1, RoundingMode.HALF_UP).toString()
     }
 
     private fun setPlaylistText(playlistId: Int) {

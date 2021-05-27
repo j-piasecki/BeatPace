@@ -36,7 +36,7 @@ internal class PlaylistManagerTest {
     fun deletePlaylistById_DeletePlayListInDAO_MethodNotExecuted() {
         example2.deletePlaylistById(123)
 
-        verify(dao, times(0)).deletePlaylist(123)
+        verify(dao, times(1)).deletePlaylist(123)
     }
 
     @Test
@@ -94,7 +94,7 @@ internal class PlaylistManagerTest {
         val songId = 200L
         example2.removeSongFromPlaylist(id, songId)
 
-        verify(dao, times(0)).removeSong(PlaylistContent(id, songId))
+        verify(dao, times(1)).removeSong(PlaylistContent(id, songId))
     }
 
     @Test

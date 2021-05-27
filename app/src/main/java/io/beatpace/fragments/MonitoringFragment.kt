@@ -93,8 +93,8 @@ class MonitoringFragment: Fragment() {
         service.startMonitoring(playlist!!, pace)
     }
 
-    private fun showCurrentPace(pace: Double) {
-        pacePresenter.text = "$pace"
+    private fun showCurrentPace(pace: Double, maxPace: Double) {
+        pacePresenter.text = "$pace / $maxPace"
     }
 
     inner class MonitoringServiceConnection: ServiceConnection {
