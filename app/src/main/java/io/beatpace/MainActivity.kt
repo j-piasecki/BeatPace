@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         createNotificationChannel()
         setContentView(R.layout.activity_main)
 
+        //Ask for storage and location permission
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
             viewModel.loadSongs()
         else

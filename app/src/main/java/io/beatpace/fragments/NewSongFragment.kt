@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -45,6 +46,10 @@ class NewSongFragment : Fragment() {
         recyclerView.adapter = adapter
 
         view.findViewById<FloatingActionButton>(R.id.new_song_confirm).setOnClickListener(this::onConfirmClick)
+
+        if (adapter.getVisibleSongs().size > 0) {
+            view.findViewById<TextView>(R.id.add_song_no_more_songs_text).visibility = View.GONE
+        }
     }
 
     private fun onConfirmClick(view: View) {
@@ -63,7 +68,7 @@ class NewSongFragment : Fragment() {
             }
         }
 
-        findNavController().navigate(NewSongFragmentDirections.actionNewSongFragmentToEditPlaylistFragment(playlistId))
+        findNavController().navigateUp()
     }
 
     private fun getSongsFromPlaylist(playlist: Playlist): List<Long> {

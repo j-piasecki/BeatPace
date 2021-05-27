@@ -20,4 +20,9 @@
     <string name="pace_tracker">Pace tracker</string>
     <string name="notification_text">Your current speed: %1$.2f</string>
     <string name="meters">%1$.2f meters</string>
+    <string name="manage_playlists_header">Manage playlists</string>
+    <string name="edit_playlist_header">Edit playlist</string>
+    <string name="add_songs_header">Add songs</string>
+    <string name="edit_playlist_playlist_empty_text">This playlist contains no songs</string>
+    <string name="add_songs_no_more_songs_message">No more songs available on the device</string>
 </resources>
