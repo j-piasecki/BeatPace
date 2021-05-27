@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="Ok"
+            android:text="@android:string/ok"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -53,7 +53,7 @@
                 android:gravity="center"
                 android:textSize="17dp"
                 android:textStyle="bold"
-                android:text="Average pace"
+                android:text="@string/text_average_pace"
                 android:id="@+id/averageSpeedTitle"
                 tools:layout_editor_absoluteY="57dp"
                 tools:layout_editor_absoluteX="100dp" />
@@ -64,7 +64,7 @@
                 android:layout_marginHorizontal="50dp"
                 android:gravity="center"
                 android:textSize="20dp"
-                android:text="Average pace"
+                android:text="@string/text_average_pace"
                 android:drawablePadding="-35dp"
                 android:ems="10"
                 android:id="@+id/averageSpeedText"
@@ -82,7 +82,7 @@
                 android:textStyle="bold"
                 android:background="@drawable/title_background"
                 android:gravity="center"
-                android:text="Distance"
+                android:text="@string/text_distance"
                 android:id="@+id/averageDistanceTitle"
                 tools:layout_editor_absoluteY="57dp"
                 tools:layout_editor_absoluteX="100dp" />
@@ -93,7 +93,7 @@
 
                 android:layout_marginHorizontal="50dp"
                 android:gravity="center"
-                android:text="Distance "
+                android:text="@string/text_distance"
                 android:textSize="20dp"
                 android:id="@+id/distanceText"
                 tools:layout_editor_absoluteY="148dp"
@@ -112,7 +112,7 @@
                 android:background="@drawable/title_background"
                 android:backgroundTint="#FA695A"
                 android:gravity="center"
-                android:text="Time"
+                android:text="@string/text_time"
                 android:id="@+id/averageDistanceTime"
                 tools:layout_editor_absoluteY="57dp"
                 tools:layout_editor_absoluteX="100dp" />
@@ -124,7 +124,7 @@
                 android:layout_marginHorizontal="50dp"
                 android:gravity="center"
                 android:textSize="20dp"
-                android:text="Time"
+                android:text="@string/text_time"
                 android:drawablePadding="-35dp"
                 android:id="@+id/timeText"
                 tools:layout_editor_absoluteY="251dp"

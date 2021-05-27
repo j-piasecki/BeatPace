@@ -64,7 +64,7 @@ class PaceTracker(private val context: Context) {
     private fun calculatePace(location: Location): Double {
         val elapsedTime = System.currentTimeMillis() - previousTime
         val distance = if (previousLocation == null) 0.0 else location.distanceTo(previousLocation).toDouble()
-        currentPace = round(distance * 1000 / elapsedTime * 100) / 100
+        currentPace = round(location.speed.toDouble() * 100) / 100
 
         runDistance += distance
         runDuration += elapsedTime

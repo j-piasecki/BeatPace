@@ -62,7 +62,7 @@ class EndFragment : Fragment() {
         }
 
         view?.findViewById<TextView>(R.id.averageSpeedText)?.text = "$averageSpeed m/s"
-        view?.findViewById<TextView>(R.id.distanceText)?.text = "$distance meters"
+        view?.findViewById<TextView>(R.id.distanceText)?.text = getString(R.string.meters, distance)
         view?.findViewById<TextView>(R.id.timeText)?.text = "${minutes}m ${seconds}s"
     }
 

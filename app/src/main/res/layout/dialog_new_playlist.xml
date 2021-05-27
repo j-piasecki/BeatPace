@@ -7,7 +7,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Playlist name">
+            android:hint="@string/input_playlist_name">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dialog_new_playlist_name"
