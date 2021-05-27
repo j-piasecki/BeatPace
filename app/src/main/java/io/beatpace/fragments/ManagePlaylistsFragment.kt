@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import io.beatpace.R
 import io.beatpace.api.ViewModel
 import io.beatpace.fragments.adapters.PlaylistExtendedPickerAdapter
@@ -80,8 +81,18 @@ class ManagePlaylistsFragment : Fragment() {
     }
 
     private fun onDeletePlaylist(playlistId: Int) {
+        val deletedPlaylist = viewModel.getPlaylistManager().getPlaylistById(playlistId) ?: return
         viewModel.getPlaylistManager().deletePlaylistById(playlistId)
 
-        //TODO ask user if they are sure
+        Snackbar.make(requireView().findViewById(R.id.main_layout), requireContext().getString(R.string.playlist_deleted, deletedPlaylist.name), Snackbar.LENGTH_LONG)
+            .setAction(requireContext().getString(R.string.undo)) {
+                val id = viewModel.getPlaylistManager().createPlaylist(deletedPlaylist.name)
+
+                for (i in 0 until deletedPlaylist.getSize()) {
+                    viewModel.getPlaylistManager().addSongToPlaylist(id, deletedPlaylist.getSong(i))
+                }
+
+                adapter.submitList(viewModel.getPlaylistManager().getAllPlaylists())
+            }.show()
     }
 }
