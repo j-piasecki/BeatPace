@@ -12,6 +12,8 @@ import io.beatpace.MainActivity.Companion.CHANNEL_ID
 import io.beatpace.R
 import io.beatpace.api.data.structures.Playlist
 import io.beatpace.exceptions.NegativePaceException
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 
 class MonitoringService : Service() {
@@ -25,7 +27,7 @@ class MonitoringService : Service() {
     lateinit var paceTracker: PaceTracker
     private lateinit var binder: LocalBinder
     private var maxPace = 0.0
-    private var listener: ((Double) -> Unit)? = null
+    private var listener: ((Double, Double) -> Unit)? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -48,12 +50,11 @@ class MonitoringService : Service() {
         if (pace < 0)
             throw NegativePaceException("Pace cannot be negative!")
 
-        musicController.attachToView(StyledPlayerView(this))
         paceTracker.setOnUpdateListener(this::onPaceUpdate)
-
+        
         if (!isRunning) {
             isRunning = true
-            maxPace = pace
+            maxPace = BigDecimal.valueOf(pace).setScale(2, RoundingMode.HALF_UP).toDouble()
 
             musicController.startPlaying(playlist, pace)
             paceTracker.startTracking()
@@ -66,7 +67,7 @@ class MonitoringService : Service() {
         isRunning = false;
     }
 
-    fun setPaceDisplayListener(listener: (Double) -> Unit) {
+    fun setPaceDisplayListener(listener: (Double, Double) -> Unit) {
         this.listener = listener
     }
 
@@ -86,8 +87,8 @@ class MonitoringService : Service() {
 
 
         return NotificationCompat.Builder(this, CHANNEL_ID).apply {
-            setContentTitle("BeatPace pace tracker")
-            setContentText("Your current speed: $currPace, given pace: $maxPace")
+            setContentTitle("Pace tracker")
+            setContentText("Your current speed: $currPace")
             setSmallIcon(R.drawable.ic_servicelogo)
             color = getColor(R.color.black)
             setContentIntent(pendingIntent)
@@ -106,7 +107,7 @@ class MonitoringService : Service() {
         notify(setUpNotification(pace))
 
         musicController.onPaceUpdate(pace)
-        listener?.invoke(pace)
+        listener?.invoke(pace, maxPace)
     }
 
     inner class LocalBinder : Binder() {
