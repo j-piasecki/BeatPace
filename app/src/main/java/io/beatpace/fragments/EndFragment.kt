@@ -1,17 +1,18 @@
 package io.beatpace.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import io.beatpace.R
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class EndFragment : Fragment() {
 
@@ -35,19 +36,37 @@ class EndFragment : Fragment() {
     private fun disableBackButton() {
         view?.isFocusableInTouchMode = true
         view?.requestFocus()
-        view?.setOnKeyListener {v, keyCode, event ->
+        view?.setOnKeyListener { v, keyCode, event ->
             keyCode == KeyEvent.KEYCODE_BACK
         }
     }
 
-    fun showStats() {
-        val averageSpeed = args.runDistance / args.runDistance
-        view?.findViewById<TextView>(R.id.averageSpeedText)?.text = "Average speed: $averageSpeed"
-        view?.findViewById<TextView>(R.id.distanceText)?.text = "Distance: ${args.runDistance}"
-        view?.findViewById<TextView>(R.id.timeText)?.text = "Time: ${args.runDuration}"
+    private fun showStats() {
+        val durationInSeconds =
+            BigDecimal.valueOf(args.runDuration / 1_000.0)
+                .setScale(2, RoundingMode.HALF_UP)
+        val minutes =
+            durationInSeconds.divide(BigDecimal.valueOf(60.0), 0, RoundingMode.FLOOR)
+        val seconds = durationInSeconds.subtract(
+            minutes.multiply(BigDecimal.valueOf(60))
+        ).setScale(0, RoundingMode.FLOOR);
+
+        val distance =
+            BigDecimal.valueOf(args.runDistance.toDouble())
+                .setScale(2, RoundingMode.HALF_UP)
+
+        val averageSpeed: BigDecimal = try {
+            distance.divide(durationInSeconds, 2, RoundingMode.HALF_UP)
+        } catch (ex: ArithmeticException) {
+            BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP)
+        }
+
+        view?.findViewById<TextView>(R.id.averageSpeedText)?.text = "$averageSpeed m/s"
+        view?.findViewById<TextView>(R.id.distanceText)?.text = "$distance meters"
+        view?.findViewById<TextView>(R.id.timeText)?.text = "${minutes}m ${seconds}s"
     }
 
-    fun onOkClick(view: View) {
+    private fun onOkClick(view: View) {
         findNavController().navigate(EndFragmentDirections.actionEndFragmentToHomeFragment())
     }
 

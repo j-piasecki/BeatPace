@@ -19,6 +19,7 @@ class MonitoringServiceTest {
         mockedMusicController = mock(MusicController::class.java)
         mockedPaceTracker = mock(PaceTracker::class.java)
         service = buildService(mockedMusicController, mockedPaceTracker)
+        MonitoringService.isRunning = false
     }
 
     private fun buildService(

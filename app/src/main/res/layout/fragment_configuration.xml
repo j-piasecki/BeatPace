@@ -26,14 +26,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="140dp"
             android:layout_marginEnd="150dp"
             android:text="Speed"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintHorizontal_bias="1.0" />
 
     <TextView
             android:id="@+id/configuration_current_playlist"
@@ -41,14 +41,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="56dp"
             android:layout_marginEnd="150dp"
             android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
 
             android:text="Playlist"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/configuration_set_speed" />
+            app:layout_constraintTop_toBottomOf="@+id/configuration_set_speed"
+            app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
             android:id="@+id/configuration_set_speed"
