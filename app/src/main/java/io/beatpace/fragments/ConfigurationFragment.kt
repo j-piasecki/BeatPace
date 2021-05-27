@@ -47,10 +47,12 @@ class ConfigurationFragment : Fragment() {
 
     private fun onStartClick(view: View) {
         val selectedPlaylist = viewModel.getDataConfig().getSelectedPlaylistId()
-        if (selectedPlaylist >= 0 && viewModel.getPlaylistManager().getPlaylistById(selectedPlaylist) != null) {
-            findNavController().navigate(ConfigurationFragmentDirections.actionConfigurationFragmentToMonitoringFragment())
-        } else {
+        if (selectedPlaylist == -1 || viewModel.getPlaylistManager().getPlaylistById(selectedPlaylist) == null) {
             Toast.makeText(context, requireContext().getString(R.string.no_playlist_selected), Toast.LENGTH_SHORT).show()
+        } else if (viewModel.getPlaylistManager().getPlaylistById(selectedPlaylist)?.getSize() == 0) {
+            Toast.makeText(context, requireContext().getString(R.string.playlist_cannot_be_empty), Toast.LENGTH_SHORT).show()
+        } else {
+            findNavController().navigate(ConfigurationFragmentDirections.actionConfigurationFragmentToMonitoringFragment())
         }
     }
 
