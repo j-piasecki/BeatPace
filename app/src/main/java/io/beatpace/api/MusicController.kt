@@ -44,7 +44,11 @@ class MusicController(private val exoPlayer: SimpleExoPlayer) {
     }
 
     fun onPaceUpdate(pace: Double) {
-        exoPlayer.volume = ((1 / (targetPace.pow(5))) * pace.pow(5)).toFloat()
+        if (targetPace.equals(0.0)) {
+            exoPlayer.volume = 0f;
+        } else {
+            exoPlayer.volume = ((1 / (targetPace.pow(5))) * pace.pow(5)).toFloat()
+        }
     }
 
     private fun getMediaItemList(playlist: Playlist): List<MediaItem> {

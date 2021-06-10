@@ -61,7 +61,7 @@ class PaceTracker(private val context: Context) {
 
     fun getRunDistance() = runDistance
 
-    fun getRunDuration() = runDuration
+    fun getRunDuration() = runDuration + System.currentTimeMillis() - previousTime
 
     fun getCurrentPace() = currentPace
 
